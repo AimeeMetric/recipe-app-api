@@ -25,5 +25,8 @@ RUN if [ "$DEV" = "true" ] ; then pip install -r /tmp/requirements.dev.txt ;  fi
 RUN rm -rf /tmp
 
 # Create the user
-# RUN ln -sf /bin/bash /bin/sh
-# RUN useradd -ms /bin/bash  vault
+# by using the -D option, 
+# the user is created
+#  without a password.
+RUN adduser -D django-user
+USER django-user
