@@ -20,10 +20,14 @@ COPY requirements.txt /tmp/requirements.txt
 COPY requirements.dev.txt /tmp/requirements.dev.txt
 
 RUN /usr/local/bin/python -m pip install --upgrade pip
+RUN apk add --update --no-cache postgresql-client
+RUN apk add --update --no-cache --virtual .tmp-build-deps build-base postgresql-dev musl-dev
+
 RUN pip install -r /tmp/requirements.txt
 # RUN pip install -r requirements.dev.txt
 RUN if [ "$DEV" = "true" ] ; then pip install -r /tmp/requirements.dev.txt ;  fi
 RUN rm -rf /tmp
+RUN apk del .tmp-build-deps
 
 # Create the user
 # by using the -D option, 
