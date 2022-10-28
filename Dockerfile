@@ -19,6 +19,7 @@ ARG DEV=false
 COPY requirements.txt /tmp/requirements.txt
 COPY requirements.dev.txt /tmp/requirements.dev.txt
 
+RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 # RUN pip install -r requirements.dev.txt
 RUN if [ "$DEV" = "true" ] ; then pip install -r /tmp/requirements.dev.txt ;  fi
