@@ -35,3 +35,4 @@ RUN apk del .tmp-build-deps
 #  without a password.
 RUN adduser -D django-user
 USER django-user
+
